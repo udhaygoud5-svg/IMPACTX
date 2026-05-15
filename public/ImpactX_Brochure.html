@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ImpactX — Creative-Tech Growth Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#090909;color:#F4F1EC;font-family:'DM Sans',sans-serif}
+
+/* Grid BG */
+.grid-bg{
+  background-image:
+    linear-gradient(rgba(232,53,15,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(232,53,15,.05) 1px,transparent 1px);
+  background-size:80px 80px;
+}
+/* Glow overlays */
+.blue-glow::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(26,95,255,.22),transparent);
+}
+.red-glow-center::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(232,53,15,.15),transparent);
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:64px;padding:0 56px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .3s,border-color .3s;
+}
+nav.scrolled{background:rgba(9,9,9,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:34px;height:34px;background:#E8350F;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:#fff;letter-spacing:-.5px}
+.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:20px}
+.logo-text .w{color:#F4F1EC}.logo-text .r{color:#E8350F}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(244,241,236,.5);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:#F4F1EC}
+.nav-cta{background:#E8350F;color:#fff;padding:10px 24px;border-radius:100px;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.18em;text-decoration:none;box-shadow:0 0 28px rgba(232,53,15,.4);transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+
+/* ── SECTIONS ── */
+section{position:relative;overflow:hidden}
+.label{font-size:10px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:#E8350F;margin-bottom:18px}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;line-height:1.05;letter-spacing:-1.5px}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 56px 80px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(232,53,15,.3);color:#E8350F;background:rgba(232,53,15,.05);border-radius:100px;padding:6px 18px;font-size:10px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;margin-bottom:36px}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#E8350F}
+.hero-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(64px,9vw,120px);line-height:1;letter-spacing:-4px;margin-bottom:24px;background:linear-gradient(175deg,#F4F1EC 55%,rgba(244,241,236,.35) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub-label{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:#E8350F;letter-spacing:.3em;text-transform:uppercase;margin-bottom:36px}
+.hero-desc{font-size:17px;line-height:1.75;color:rgba(244,241,236,.5);max-width:540px;margin:0 auto 48px}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:#E8350F;color:#fff;padding:15px 40px;border-radius:100px;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.2em;text-decoration:none;box-shadow:0 0 44px rgba(232,53,15,.45)}
+.btn-outline{border:1px solid rgba(255,255,255,.12);color:rgba(244,241,236,.65);padding:15px 40px;border-radius:100px;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.2em;text-decoration:none;background:rgba(255,255,255,.03)}
+.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-hint span{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,241,236,.2)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(232,53,15,.6),transparent)}
+
+/* ── WHO WE ARE ── */
+#who{padding:130px 56px;background:#0D0D0D;text-align:center;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+#who h2{font-size:clamp(28px,4vw,50px);max-width:740px;margin:0 auto 28px}
+#who p{font-size:17px;line-height:1.75;color:rgba(244,241,236,.5);max-width:600px;margin:0 auto}
+
+/* ── SERVICES OVERVIEW ── */
+#services-overview{padding:130px 56px;background:#090909}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1200px;margin:0 auto}
+.svc-card{padding:32px 28px;border-radius:18px;background:#111;border:1px solid rgba(255,255,255,.06);transition:border-color .2s,transform .2s;cursor:default}
+.svc-card:hover{border-color:rgba(232,53,15,.35);transform:translateY(-3px)}
+.svc-icon{font-size:30px;margin-bottom:18px}
+.svc-card h3{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;margin-bottom:16px}
+.svc-card ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.svc-card li{font-size:13px;color:rgba(244,241,236,.5);display:flex;align-items:center;gap:8px}
+.svc-dot{width:5px;height:5px;border-radius:50%;background:#E8350F;flex-shrink:0}
+
+/* ── SERVICE DEEP DIVE ── */
+.deep-dive{padding:130px 56px;border-top:1px solid rgba(255,255,255,.05)}
+.deep-dive:nth-child(even){background:#0D0D0D}
+.deep-dive:nth-child(odd){background:#090909}
+.deep-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.deep-tag{font-size:10px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:#E8350F;margin-bottom:20px}
+.deep-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(30px,4vw,50px);line-height:1.1;margin-bottom:28px}
+.deep-quote{font-size:16px;line-height:1.7;color:#E8350F;font-style:italic;font-weight:600}
+.deep-items{display:flex;flex-direction:column;gap:12px}
+.deep-item{display:flex;align-items:center;gap:16px;padding:18px 22px;border-radius:14px;background:#161616;border:1px solid rgba(255,255,255,.06);font-size:14px;font-weight:600;color:rgba(244,241,236,.8);transition:border-color .2s,background .2s;cursor:default}
+.deep-item:hover{border-color:rgba(232,53,15,.35);background:#1A1A1A}
+.deep-num{width:28px;height:28px;border-radius:50%;background:rgba(232,53,15,.12);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:#E8350F;flex-shrink:0}
+
+/* ── PROCESS ── */
+#process{padding:130px 56px;background:#090909;text-align:center;border-top:1px solid rgba(255,255,255,.05)}
+#process h2{font-size:clamp(48px,7vw,88px);letter-spacing:-3px;margin-bottom:72px}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1200px;margin:0 auto;text-align:left}
+.process-card{padding:32px;border-radius:18px;background:#111;border:1px solid rgba(255,255,255,.06);transition:border-color .2s}
+.process-card:hover{border-color:rgba(232,53,15,.3)}
+.process-num{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#E8350F;letter-spacing:.2em;margin-bottom:22px}
+.process-card h3{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;margin-bottom:14px}
+.process-card p{font-size:13px;line-height:1.7;color:rgba(244,241,236,.5)}
+
+/* ── WHY US ── */
+#why{padding:130px 56px;background:#0D0D0D;border-top:1px solid rgba(255,255,255,.05)}
+#why h2{font-size:clamp(36px,5vw,64px);text-align:center;margin-bottom:72px}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto}
+.why-card{padding:32px;border-radius:18px;background:#111;border:1px solid rgba(255,255,255,.06);transition:border-color .2s,transform .2s}
+.why-card:hover{border-color:rgba(232,53,15,.3);transform:translateY(-3px)}
+.why-icon{font-size:32px;margin-bottom:18px}
+.why-card h3{font-family:'Syne',sans-serif;font-weight:800;font-size:19px;margin-bottom:12px}
+.why-card p{font-size:13px;line-height:1.7;color:rgba(244,241,236,.5)}
+
+/* ── CTA ── */
+#cta{padding:150px 56px 100px;text-align:center;border-top:1px solid rgba(255,255,255,.05)}
+#cta h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(48px,7vw,96px);line-height:1.05;letter-spacing:-3px;margin-bottom:72px}
+.contact-row{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;max-width:900px;margin:0 auto 64px}
+.contact-item{text-align:center}
+.contact-icon{font-size:30px;margin-bottom:12px}
+.contact-label{font-size:9px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(244,241,236,.3);margin-bottom:8px}
+.contact-val{font-size:13px;color:rgba(244,241,236,.7);line-height:1.7}
+.cta-main-btn{display:inline-block;background:#E8350F;color:#fff;padding:20px 64px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.2em;text-decoration:none;box-shadow:0 0 64px rgba(232,53,15,.55);transition:opacity .2s}
+.cta-main-btn:hover{opacity:.85}
+
+/* ── FOOTER ── */
+footer{padding:24px 56px;text-align:center;border-top:1px solid rgba(255,255,255,.05);background:#060606}
+footer p{font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(244,241,236,.2)}
+
+/* fade-in on scroll */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">
+    <div class="logo-mark">IX</div>
+    <div class="logo-text"><span class="w">Impact</span><span class="r">X</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#who">Overview</a>
+    <a href="#services-overview">Services</a>
+    <a href="#process">Our Process</a>
+    <a href="#why">Why Us</a>
+  </div>
+  <a href="#cta" class="nav-cta">Start Journey</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="grid-bg blue-glow">
+  <div class="hero-badge"><div class="hero-badge-dot"></div>Creative-Tech Growth Company</div>
+  <h1 class="hero-h1">IMPACT<span style="-webkit-text-fill-color:#E8350F;color:#E8350F">X</span></h1>
+  <p class="hero-sub-label">WE TURN ATTENTION INTO GROWTH</p>
+  <p class="hero-desc">From AI automations to websites, branding, reels, and growth systems — we build everything businesses need to grow faster and smarter.</p>
+  <div class="hero-btns">
+    <a href="#services-overview" class="btn-primary">Explore Services</a>
+    <a href="#cta" class="btn-outline">Start Journey</a>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section id="who">
+  <p class="label">WHO WE ARE</p>
+  <h2 class="section-title reveal">At ImpactX, we help businesses build a strong and impactful online presence.</h2>
+  <p class="reveal">From creating stunning websites to crafting engaging brand identities and automating customer interactions, we provide end-to-end solutions that help businesses grow faster and smarter.</p>
+</section>
+
+<!-- SERVICES OVERVIEW -->
+<section id="services-overview">
+  <div style="max-width:1200px;margin:0 auto;text-align:center;margin-bottom:64px">
+    <p class="label">OUR SERVICES</p>
+    <h2 class="section-title reveal" style="font-size:clamp(40px,5vw,72px)">Strategic Solutions</h2>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card reveal"><div class="svc-icon">🌐</div><h3>Web & Software Solutions</h3><ul><li><span class="svc-dot"></span>Custom Sites & Funnels</li><li><span class="svc-dot"></span>Dashboards & Systems</li><li><span class="svc-dot"></span>App MVPs</li></ul></div>
+    <div class="svc-card reveal"><div class="svc-icon">🎨</div><h3>Branding & Social Media</h3><ul><li><span class="svc-dot"></span>Brand Identity</li><li><span class="svc-dot"></span>Feed Design</li><li><span class="svc-dot"></span>Content Strategy</li></ul></div>
+    <div class="svc-card reveal"><div class="svc-icon">🤖</div><h3>AI & Automation</h3><ul><li><span class="svc-dot"></span>WhatsApp Chatbots</li><li><span class="svc-dot"></span>Lead Capture</li><li><span class="svc-dot"></span>CRM Integration</li></ul></div>
+    <div class="svc-card reveal"><div class="svc-icon">🎬</div><h3>Reels & Media Production</h3><ul><li><span class="svc-dot"></span>Short-form Reels</li><li><span class="svc-dot"></span>Brand Shoots</li><li><span class="svc-dot"></span>Ad Creatives</li></ul></div>
+    <div class="svc-card reveal"><div class="svc-icon">🎯</div><h3>Lead Generation</h3><ul><li><span class="svc-dot"></span>Paid Ads</li><li><span class="svc-dot"></span>WhatsApp Funnels</li><li><span class="svc-dot"></span>Analytics & Reporting</li></ul></div>
+    <div class="svc-card reveal"><div class="svc-icon">📈</div><h3>Social Media Growth</h3><ul><li><span class="svc-dot"></span>Instagram Growth</li><li><span class="svc-dot"></span>Content Planning</li><li><span class="svc-dot"></span>Profile Optimization</li></ul></div>
+  </div>
+</section>
+
+<!-- DEEP DIVE 1 -->
+<section class="deep-dive">
+  <div class="deep-inner">
+    <div class="reveal">
+      <p class="deep-tag">01 / WEBSITES & TECH</p>
+      <h2 class="deep-title">Web & Software Solutions</h2>
+      <p class="deep-quote">"We build digital platforms that don't just look good — they perform."</p>
+    </div>
+    <div class="deep-items reveal">
+      <div class="deep-item"><div class="deep-num">1</div>Landing Pages & Sales Funnels</div>
+      <div class="deep-item"><div class="deep-num">2</div>Business Websites (Portfolio / Service-based)</div>
+      <div class="deep-item"><div class="deep-num">3</div>Dashboard & Data Visualizations</div>
+      <div class="deep-item"><div class="deep-num">4</div>Billing & Management Systems</div>
+      <div class="deep-item"><div class="deep-num">5</div>App Development (Basic MVPs)</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEEP DIVE 2 -->
+<section class="deep-dive">
+  <div class="deep-inner">
+    <div class="reveal">
+      <p class="deep-tag">02 / BRANDING & SOCIAL</p>
+      <h2 class="deep-title">Branding & Strategy</h2>
+      <p class="deep-quote">"We turn your business into a brand people recognize and trust."</p>
+    </div>
+    <div class="deep-items reveal">
+      <div class="deep-item"><div class="deep-num">1</div>Instagram Page Setup & Optimization</div>
+      <div class="deep-item"><div class="deep-num">2</div>Content Strategy (Reels, Posts, Ideas)</div>
+      <div class="deep-item"><div class="deep-num">3</div>Visual Feed Design & Brand Identity</div>
+      <div class="deep-item"><div class="deep-num">4</div>Audience Growth Strategy</div>
+      <div class="deep-item"><div class="deep-num">5</div>Logo & Visual Identity Design</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEEP DIVE 3 -->
+<section class="deep-dive">
+  <div class="deep-inner">
+    <div class="reveal">
+      <p class="deep-tag">03 / AI & AUTOMATION</p>
+      <h2 class="deep-title">AI & Growth Automation</h2>
+      <p class="deep-quote">"Automate conversations. Capture leads. Close more customers."</p>
+    </div>
+    <div class="deep-items reveal">
+      <div class="deep-item"><div class="deep-num">1</div>WhatsApp Chatbots & Auto-replies</div>
+      <div class="deep-item"><div class="deep-num">2</div>Lead Capture & Qualification Flows</div>
+      <div class="deep-item"><div class="deep-num">3</div>Customer Support Automation</div>
+      <div class="deep-item"><div class="deep-num">4</div>CRM Integration & Management</div>
+      <div class="deep-item"><div class="deep-num">5</div>Sales Funnel Automation</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEEP DIVE 4 -->
+<section class="deep-dive">
+  <div class="deep-inner">
+    <div class="reveal">
+      <p class="deep-tag">04 / MEDIA PRODUCTION</p>
+      <h2 class="deep-title">Reels & Media</h2>
+      <p class="deep-quote">"Content that stops the scroll and starts the conversation."</p>
+    </div>
+    <div class="deep-items reveal">
+      <div class="deep-item"><div class="deep-num">1</div>Short-form Reels & Video Content</div>
+      <div class="deep-item"><div class="deep-num">2</div>Brand Shoots & Photography</div>
+      <div class="deep-item"><div class="deep-num">3</div>Video Editing & Post-production</div>
+      <div class="deep-item"><div class="deep-num">4</div>Ad Creatives & Campaign Assets</div>
+      <div class="deep-item"><div class="deep-num">5</div>Monthly Content Calendars</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="red-glow-center">
+  <p class="label">OUR PROCESS</p>
+  <h2 class="section-title reveal" id="process-h2">HOW WE SCALE</h2>
+  <div class="process-grid">
+    <div class="process-card reveal"><p class="process-num">01</p><h3>Discovery Call</h3><p>We understand your business, goals, audience, and current gaps.</p></div>
+    <div class="process-card reveal"><p class="process-num">02</p><h3>Strategy & Plan</h3><p>We map out a custom growth plan tailored to your brand and objectives.</p></div>
+    <div class="process-card reveal"><p class="process-num">03</p><h3>Build & Execute</h3><p>Our team builds, designs, and launches with precision and speed.</p></div>
+    <div class="process-card reveal"><p class="process-num">04</p><h3>Scale & Optimize</h3><p>We track, iterate, and optimize every system for long-term growth.</p></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div style="text-align:center">
+    <p class="label">WHY US</p>
+    <h2 class="section-title reveal" style="font-size:clamp(36px,5vw,64px);margin-bottom:72px">Why choose ImpactX?</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-icon">⚡</div><h3>One Ecosystem</h3><p>Creative, tech, media, and growth — all under one roof. No juggling agencies.</p></div>
+    <div class="why-card reveal"><div class="why-icon">🎯</div><h3>Results First</h3><p>Every decision is made to drive leads, conversions, and real revenue.</p></div>
+    <div class="why-card reveal"><div class="why-icon">🤖</div><h3>AI-Powered</h3><p>We use automation and AI to give your business a serious competitive edge.</p></div>
+    <div class="why-card reveal"><div class="why-icon">🏆</div><h3>Premium Execution</h3><p>No templates. Everything is built to feel premium and brand-specific.</p></div>
+    <div class="why-card reveal"><div class="why-icon">📈</div><h3>Long-term Partner</h3><p>We grow with you — not just a one-time vendor. We're in it for the long run.</p></div>
+    <div class="why-card reveal"><div class="why-icon">🚀</div><h3>Fast Delivery</h3><p>We move fast without compromising on quality or attention to detail.</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="grid-bg red-glow-center">
+  <p class="label">GET STARTED</p>
+  <h2 class="reveal">Ready to Grow<br/>Your Brand?</h2>
+  <div class="contact-row">
+    <div class="contact-item reveal">
+      <div class="contact-icon">📞</div>
+      <p class="contact-label">Phone</p>
+      <p class="contact-val">+91 93470 47827<br/>+91 93476 51574</p>
+    </div>
+    <div class="contact-item reveal">
+      <div class="contact-icon">✉️</div>
+      <p class="contact-label">Email</p>
+      <p class="contact-val">impactx@gmail.com</p>
+    </div>
+    <div class="contact-item reveal">
+      <div class="contact-icon">📸</div>
+      <p class="contact-label">Instagram</p>
+      <p class="contact-val">@impactx</p>
+    </div>
+    <div class="contact-item reveal">
+      <div class="contact-icon">📍</div>
+      <p class="contact-label">Location</p>
+      <p class="contact-val">Vijayawada, AP</p>
+    </div>
+  </div>
+  <a href="mailto:impactx@gmail.com" class="cta-main-btn">START YOUR JOURNEY</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 IMPACTX. ALL RIGHTS RESERVED.</p>
+</footer>
+
+<script>
+// Sticky nav
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40);
+});
+// Reveal on scroll
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
