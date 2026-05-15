@@ -18,10 +18,10 @@ module.exports = {
         "on-surface": "rgb(var(--on-surface) / <alpha-value>)",
         "on-surface-variant": "rgb(var(--on-surface-variant) / <alpha-value>)",
         "background": "rgb(var(--background) / <alpha-value>)",
-        
-        // Legacy/Static colors
-        "outline-variant": "#434656",
-        "outline": "#8e90a2",
+        "accent-ai": "rgb(var(--accent-ai) / <alpha-value>)",
+        "accent-growth": "rgb(var(--accent-growth) / <alpha-value>)",
+        "outline-variant": "#2a2a2a",
+        "outline": "#444444",
       },
       borderRadius: {
         "DEFAULT": "0.5rem",
@@ -32,9 +32,12 @@ module.exports = {
         "full": "9999px"
       },
       fontFamily: {
-        headline: ["Plus Jakarta Sans", "Inter", "sans-serif"],
-        body: ["Plus Jakarta Sans", "Inter", "sans-serif"],
-        label: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+        syne: ["var(--font-syne)", "Syne", "sans-serif"],
+        "dm-sans": ["var(--font-dm-sans)", "DM Sans", "sans-serif"],
+        "dm-serif": ["var(--font-dm-serif)", "DM Serif Display", "serif"],
+        "space-mono": ["var(--font-space-mono)", "Space Mono", "monospace"],
+        headline: ["var(--font-syne)", "Syne", "sans-serif"],
+        body: ["var(--font-dm-sans)", "DM Sans", "sans-serif"],
       }
     },
   },

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { CheckCircle, AlertCircle, Loader2, ArrowRight } from "lucide-react";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -36,43 +36,75 @@ export default function ContactForm() {
         setErrorMessage(result.error || 'Something went wrong. Please try again.');
       }
     } catch (err) {
-      console.error('Form submission error:', err);
       setStatus('error');
       setErrorMessage('Network error. Please check your connection and try again.');
     }
   };
 
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    backgroundColor: 'rgba(255,255,255,0.04)',
+    border: '1px solid rgba(255,255,255,0.08)',
+    borderRadius: 16,
+    padding: '1rem 1.25rem',
+    fontSize: 15,
+    color: '#F4F1EC',
+    outline: 'none',
+    fontFamily: 'DM Sans, sans-serif',
+    transition: 'border-color 0.2s',
+  };
+
+  const labelStyle: React.CSSProperties = {
+    display: 'block',
+    fontSize: 10,
+    fontWeight: 700,
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.3em',
+    color: 'rgba(244,241,236,0.4)',
+    marginBottom: 8,
+    fontFamily: 'DM Sans, sans-serif',
+  };
+
   return (
-    <section id="contact" className="py-40 px-8 bg-black relative overflow-hidden">
-      <div className="max-w-4xl mx-auto relative z-10">
-        <div className="text-center mb-24">
-          <span className="label-md text-primary mb-4 block">Get Started</span>
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight uppercase leading-none">
-            Ready to scale <br/>your revenue?
+    <section id="contact" style={{ padding: '9rem 2rem', backgroundColor: '#090909', borderTop: '1px solid rgba(255,255,255,0.04)', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ maxWidth: 760, margin: '0 auto', position: 'relative', zIndex: 10 }}>
+
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.35em', color: '#E8350F', display: 'block', marginBottom: 16, fontFamily: 'DM Sans, sans-serif' }}>
+            Work With Us
+          </span>
+          <h2 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 5vw, 3.5rem)', letterSpacing: '-0.03em', lineHeight: 1.08, color: '#F4F1EC', margin: 0 }}>
+            Let's build your next level.
           </h2>
+          <p style={{ marginTop: 16, color: 'rgba(244,241,236,0.5)', fontSize: 16, lineHeight: 1.6, fontFamily: 'DM Sans, sans-serif' }}>
+            Tell us about your business and goals — we'll get back within 24 hours.
+          </p>
         </div>
 
         <AnimatePresence mode="wait">
           {status === 'success' ? (
             <motion.div
               key="success"
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="text-center py-20"
+              exit={{ opacity: 0, scale: 0.95 }}
+              style={{ textAlign: 'center', padding: '5rem 2rem' }}
             >
-              <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
-                <CheckCircle className="text-primary" size={48} />
+              <div style={{ width: 72, height: 72, borderRadius: '50%', backgroundColor: 'rgba(232,53,15,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem' }}>
+                <CheckCircle size={36} color="#E8350F" />
               </div>
-              <h3 className="text-3xl font-extrabold uppercase tracking-tight mb-4">Request Sent!</h3>
-              <p className="text-on-surface-variant text-lg mb-10 max-w-lg mx-auto">
-                Thank you for reaching out! Our team will review your request and get back to you within 24 hours.
+              <h3 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 28, color: '#F4F1EC', marginBottom: 12 }}>
+                Request Sent!
+              </h3>
+              <p style={{ color: 'rgba(244,241,236,0.55)', fontSize: 16, maxWidth: 400, margin: '0 auto 2rem', lineHeight: 1.6, fontFamily: 'DM Sans, sans-serif' }}>
+                Our team will review your request and reach out within 24 hours.
               </p>
               <button
                 onClick={() => setStatus('idle')}
-                className="bg-white/10 text-on-surface px-10 py-4 rounded-full font-bold uppercase tracking-tight hover:bg-white/20 transition-colors"
+                style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: '#F4F1EC', padding: '0.75rem 2rem', borderRadius: 999, fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.15em', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif' }}
               >
-                Send Another Request
+                Send Another
               </button>
             </motion.div>
           ) : (
@@ -82,94 +114,121 @@ export default function ContactForm() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               onSubmit={handleSubmit}
-              className="space-y-6"
+              style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="label-md text-on-surface-variant ml-4">Full Name</label>
+              {/* Row 1 */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
+                <div>
+                  <label style={labelStyle}>Full Name *</label>
                   <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-5 text-lg focus:border-primary focus:outline-none transition-colors"
+                    type="text" required value={formData.name}
                     placeholder="John Doe"
+                    style={inputStyle}
+                    onFocus={(e) => { e.target.style.borderColor = '#E8350F'; }}
+                    onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; }}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="label-md text-on-surface-variant ml-4">Work Email</label>
+                <div>
+                  <label style={labelStyle}>Email Address *</label>
                   <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-5 text-lg focus:border-primary focus:outline-none transition-colors"
+                    type="email" required value={formData.email}
                     placeholder="john@business.com"
+                    style={inputStyle}
+                    onFocus={(e) => { e.target.style.borderColor = '#E8350F'; }}
+                    onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; }}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="label-md text-on-surface-variant ml-4">Phone Number</label>
+              {/* Row 2 */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
+                <div>
+                  <label style={labelStyle}>Phone Number *</label>
                   <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-5 text-lg focus:border-primary focus:outline-none transition-colors"
+                    type="tel" required value={formData.phone}
                     placeholder="+91 98765 43210"
+                    style={inputStyle}
+                    onFocus={(e) => { e.target.style.borderColor = '#E8350F'; }}
+                    onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; }}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="label-md text-on-surface-variant ml-4">Business Name</label>
+                <div>
+                  <label style={labelStyle}>Business Name *</label>
                   <input
-                    type="text"
-                    required
-                    value={formData.business}
-                    className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-5 text-lg focus:border-primary focus:outline-none transition-colors"
-                    placeholder="Your Agency / SaaS"
+                    type="text" required value={formData.business}
+                    placeholder="Your Business"
+                    style={inputStyle}
+                    onFocus={(e) => { e.target.style.borderColor = '#E8350F'; }}
+                    onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; }}
                     onChange={(e) => setFormData({...formData, business: e.target.value})}
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="label-md text-on-surface-variant ml-4">How can we help?</label>
+              {/* Message */}
+              <div>
+                <label style={labelStyle}>How can ImpactX help you? *</label>
                 <textarea
-                  rows={4}
-                  required
-                  value={formData.message}
-                  className="w-full bg-white/5 border border-white/10 rounded-[32px] px-8 py-5 text-lg focus:border-primary focus:outline-none transition-colors resize-none"
-                  placeholder="Tell us about your goals..."
+                  rows={4} required value={formData.message}
+                  placeholder="Tell us about your goals, the challenges you're facing, and what growth looks like for you..."
+                  style={{ ...inputStyle, borderRadius: 16, resize: 'none' }}
+                  onFocus={(e) => { e.target.style.borderColor = '#E8350F'; }}
+                  onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; }}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
                 />
               </div>
 
-              {/* Error Message */}
+              {/* Error */}
               {status === 'error' && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-3 bg-red-500/10 border border-red-500/20 rounded-2xl px-6 py-4"
+                  style={{ display: 'flex', alignItems: 'center', gap: 10, backgroundColor: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: 12, padding: '0.875rem 1.25rem' }}
                 >
-                  <AlertCircle className="text-red-400 shrink-0" size={20} />
-                  <p className="text-red-400 text-sm font-medium">{errorMessage}</p>
+                  <AlertCircle size={18} color="#f87171" style={{ flexShrink: 0 }} />
+                  <p style={{ color: '#f87171', fontSize: 14, fontFamily: 'DM Sans, sans-serif', margin: 0 }}>{errorMessage}</p>
                 </motion.div>
               )}
 
+              {/* Submit */}
               <button
                 type="submit"
                 disabled={status === 'submitting'}
-                className="w-full bg-primary text-black py-6 rounded-full font-bold text-xl uppercase tracking-tight hover:scale-[0.98] transition-all shadow-[0_0_40px_-10px_rgba(74,222,128,0.5)] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-3"
+                style={{
+                  width: '100%',
+                  backgroundColor: status === 'submitting' ? 'rgba(232,53,15,0.6)' : '#E8350F',
+                  color: '#fff',
+                  padding: '1.1rem 2rem',
+                  borderRadius: 999,
+                  fontFamily: 'DM Sans, sans-serif',
+                  fontWeight: 700,
+                  fontSize: 13,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.15em',
+                  border: 'none',
+                  cursor: status === 'submitting' ? 'not-allowed' : 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 10,
+                  boxShadow: '0 0 40px -10px rgba(232,53,15,0.5)',
+                  transition: 'all 0.2s',
+                  marginTop: 8,
+                }}
               >
                 {status === 'submitting' ? (
                   <>
-                    <Loader2 className="animate-spin" size={22} />
+                    <Loader2 size={18} style={{ animation: 'spin 1s linear infinite' }} />
                     Sending...
                   </>
                 ) : (
-                  'Send Request'
+                  <>
+                    Book a Strategy Call
+                    <ArrowRight size={16} />
+                  </>
                 )}
               </button>
             </motion.form>

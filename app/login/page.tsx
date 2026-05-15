@@ -6,19 +6,16 @@ import { motion } from 'framer-motion';
 import { Lock, Mail, ArrowRight, Loader2 } from 'lucide-react';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('brandxmedia.co@gmail.com');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  // Check if already authenticated
   useEffect(() => {
     async function checkUser() {
       const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        router.push('/admin');
-      }
+      if (session) router.push('/admin');
     }
     checkUser();
   }, [router]);
@@ -29,18 +26,10 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const { data, error: authError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
+      const { data, error: authError } = await supabase.auth.signInWithPassword({ email, password });
       if (authError) throw authError;
-
-      if (data.session) {
-        router.push('/admin');
-      }
+      if (data.session) router.push('/admin');
     } catch (err: any) {
-      console.error('Login Error:', err);
       setError(err.message || 'Invalid login credentials');
     } finally {
       setLoading(false);
@@ -48,90 +37,123 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-surface flex items-center justify-center p-6 relative overflow-hidden">
-      {/* Background Decorations */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary-container/20 blur-[120px] rounded-full" />
-      </div>
-
-      <motion.div 
+    <main style={{ minHeight: '100vh', backgroundColor: '#090909', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', fontFamily: 'DM Sans, sans-serif' }}>
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md relative z-10"
+        transition={{ duration: 0.6 }}
+        style={{ width: '100%', maxWidth: 420 }}
       >
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-black tracking-tighter uppercase mb-2">
-            BrandX<span className="text-primary">Media</span>
-          </h1>
-          <p className="text-on-surface-variant uppercase tracking-[0.2em] text-xs font-bold">Admin Portal</p>
+        {/* Logo */}
+        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 12 }}>
+            <div style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: '#E8350F', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 20px -4px rgba(232,53,15,0.6)' }}>
+              <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 14, color: '#fff' }}>IX</span>
+            </div>
+            <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 22, letterSpacing: '-0.03em' }}>
+              <span style={{ color: '#F4F1EC' }}>Impact</span>
+              <span style={{ color: '#E8350F' }}>X</span>
+            </span>
+          </div>
+          <p style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.3em', color: 'rgba(244,241,236,0.35)' }}>
+            Admin Portal
+          </p>
         </div>
 
-        <div className="bg-surface-container-low p-8 lg:p-10 rounded-2xl border border-outline-variant/20 shadow-2xl backdrop-blur-xl">
-          <form onSubmit={handleLogin} className="space-y-6">
+        {/* Card */}
+        <div style={{ backgroundColor: '#111111', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 20, padding: '2.5rem' }}>
+          <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {/* Email */}
             <div>
-              <label className="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2 font-bold">Email Address</label>
-              <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/40" size={18} />
-                <input 
-                  type="email" 
+              <label style={{ display: 'block', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.3em', color: 'rgba(244,241,236,0.4)', marginBottom: 8 }}>
+                Email Address
+              </label>
+              <div style={{ position: 'relative' }}>
+                <Mail size={16} style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: 'rgba(244,241,236,0.3)' }} />
+                <input
+                  type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-surface border border-outline-variant/10 focus:border-primary focus:ring-0 text-on-surface pl-12 pr-4 py-4 rounded-lg transition-all" 
-                  placeholder="admin@brandxmedia.co"
+                  placeholder="admin@impactx.co"
                   required
+                  style={{ width: '100%', backgroundColor: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 10, padding: '0.875rem 1rem 0.875rem 2.75rem', fontSize: 14, color: '#F4F1EC', outline: 'none', fontFamily: 'DM Sans, sans-serif', boxSizing: 'border-box' }}
                 />
               </div>
             </div>
 
+            {/* Password */}
             <div>
-              <label className="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2 font-bold">Password</label>
-              <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/40" size={18} />
-                <input 
-                  type="password" 
+              <label style={{ display: 'block', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.3em', color: 'rgba(244,241,236,0.4)', marginBottom: 8 }}>
+                Password
+              </label>
+              <div style={{ position: 'relative' }}>
+                <Lock size={16} style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: 'rgba(244,241,236,0.3)' }} />
+                <input
+                  type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-surface border border-outline-variant/10 focus:border-primary focus:ring-0 text-on-surface pl-12 pr-4 py-4 rounded-lg transition-all" 
                   placeholder="••••••••"
                   required
+                  style={{ width: '100%', backgroundColor: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 10, padding: '0.875rem 1rem 0.875rem 2.75rem', fontSize: 14, color: '#F4F1EC', outline: 'none', fontFamily: 'DM Sans, sans-serif', boxSizing: 'border-box' }}
                 />
               </div>
             </div>
 
+            {/* Error */}
             {error && (
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-red-400 text-sm font-medium bg-red-400/10 p-3 rounded-md text-center border border-red-400/20"
+                style={{ color: '#f87171', fontSize: 13, backgroundColor: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: 8, padding: '0.75rem 1rem', textAlign: 'center', margin: 0 }}
               >
                 {error}
               </motion.p>
             )}
 
-            <button 
-              type="submit" 
+            {/* Submit */}
+            <button
+              type="submit"
               disabled={loading}
-              className="w-full bg-primary-container text-on-primary-container py-4 rounded-lg font-bold text-lg hover:scale-[0.98] active:scale-95 transition-all flex items-center justify-center gap-3 shadow-[0_0_40px_-10px_rgba(46,91,255,0.4)] disabled:opacity-50 disabled:hover:scale-100"
+              style={{
+                backgroundColor: '#E8350F',
+                color: '#fff',
+                padding: '0.9rem 1.5rem',
+                borderRadius: 999,
+                fontFamily: 'DM Sans, sans-serif',
+                fontWeight: 700,
+                fontSize: 12,
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                border: 'none',
+                cursor: loading ? 'not-allowed' : 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+                opacity: loading ? 0.6 : 1,
+                boxShadow: '0 0 30px -8px rgba(232,53,15,0.5)',
+                transition: 'all 0.2s',
+                marginTop: 4,
+              }}
             >
               {loading ? (
                 <>
-                  <Loader2 className="animate-spin" size={20} />
+                  <Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} />
                   Authenticating...
                 </>
               ) : (
                 <>
                   Sign In to Dashboard
-                  <ArrowRight size={20} />
+                  <ArrowRight size={16} />
                 </>
               )}
             </button>
           </form>
         </div>
 
-        <div className="mt-8 text-center">
-          <a href="/" className="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium">
-            ← Return to Website
+        <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
+          <a href="/" style={{ color: 'rgba(244,241,236,0.35)', fontSize: 13, fontFamily: 'DM Sans, sans-serif', textDecoration: 'none', transition: 'color 0.2s' }}>
+            ← Return to ImpactX
           </a>
         </div>
       </motion.div>
