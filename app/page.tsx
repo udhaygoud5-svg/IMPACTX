@@ -121,8 +121,7 @@ export default function Home() {
             className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.05] mb-8"
             style={{ fontFamily: 'Syne, sans-serif' }}
           >
-            Build Attention.<br />
-            Create <span style={{ color: '#E8350F' }}>Impact.</span><br />
+            Build Attention. Create <span style={{ color: '#E8350F' }}>Impact.</span><br />
             Scale Beyond.
           </h1>
 
