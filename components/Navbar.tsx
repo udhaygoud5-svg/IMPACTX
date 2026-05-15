@@ -17,8 +17,22 @@ export default function Navbar() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 2rem', maxWidth: '1440px', margin: '0 auto' }}>
 
         {/* ── Logo ── */}
-        <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          <img src="/main-logo.png" alt="ImpactX Logo" style={{ height: '36px', width: 'auto', objectFit: 'contain' }} />
+        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+          {/* IX Monogram */}
+          <div style={{
+            width: 36, height: 36, borderRadius: 10,
+            backgroundColor: '#E8350F',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 0 20px -4px rgba(232,53,15,0.55)',
+            flexShrink: 0,
+          }}>
+            <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 14, color: '#fff', letterSpacing: '-0.02em' }}>IX</span>
+          </div>
+          {/* Wordmark */}
+          <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 20, letterSpacing: '-0.03em' }}>
+            <span style={{ color: '#F4F1EC' }}>Impact</span>
+            <span style={{ color: '#E8350F' }}>X</span>
+          </span>
         </a>
 
         {/* ── Desktop Nav ── */}

@@ -58,10 +58,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Sidebar */}
       <aside className="w-64 bg-surface-container-low border-r border-outline-variant/20 flex flex-col">
         <div className="p-6 border-b border-outline-variant/20">
-          <div className="flex items-center gap-2">
-            <img src="/main-logo.png" alt="ImpactX Logo" className="h-8 w-auto object-contain" />
-            <span className="text-xl font-bold text-on-surface tracking-tighter ml-2">Admin</span>
-          </div>
+          <h1 className="text-xl font-bold text-on-surface tracking-tighter">ImpactX <span className="text-primary">Admin</span></h1>
         </div>
         <nav className="flex-1 p-4 space-y-2">
           {navItems.map((item) => {

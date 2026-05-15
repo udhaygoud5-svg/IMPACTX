@@ -46,8 +46,14 @@ export default function LoginPage() {
       >
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
-            <img src="/main-logo.png" alt="ImpactX Logo" style={{ height: '40px', width: 'auto', objectFit: 'contain' }} />
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 12 }}>
+            <div style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: '#E8350F', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 20px -4px rgba(232,53,15,0.6)' }}>
+              <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 14, color: '#fff' }}>IX</span>
+            </div>
+            <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 22, letterSpacing: '-0.03em' }}>
+              <span style={{ color: '#F4F1EC' }}>Impact</span>
+              <span style={{ color: '#E8350F' }}>X</span>
+            </span>
           </div>
           <p style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.3em', color: 'rgba(244,241,236,0.35)' }}>
             Admin Portal
