@@ -14,7 +14,7 @@ export default function About() {
           <span className="label-md tracking-widest uppercase text-primary">About Us</span>
           <h2 className="text-5xl font-black tracking-tighter mt-4 mb-8">Architects of the Digital Future</h2>
           <p className="text-xl text-on-surface-variant leading-relaxed mb-8">
-            At BrandXMedia, we blur the lines between technology and art. Founded on the principle that digital experiences should be both breathtaking and highly functional, we specialize in building enterprise-grade solutions for ambitious brands.
+            At ImpactX, we blur the lines between technology and art. Founded on the principle that digital experiences should be both breathtaking and highly functional, we specialize in building enterprise-grade solutions for ambitious brands.
           </p>
           <p className="text-xl text-on-surface-variant leading-relaxed mb-12">
             Our team of engineers, designers, and growth strategists work in unison to transform complex business challenges into intuitive, beautiful, and scalable digital ecosystems.

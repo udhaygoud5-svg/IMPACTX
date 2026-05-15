@@ -1,4 +1,4 @@
-# BrandXMedia - Premium Digital Agency Website
+# ImpactX - Premium Digital Agency Website
 
 A visually stunning, high-converting luxury digital agency website with advanced 3D anti-gravity animations and a fully functional backend powered by Supabase.
 

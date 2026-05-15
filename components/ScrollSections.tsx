@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 const logos = ['TECHFLOW', 'NEXUS.AI', 'VELOCITY', 'LUMINA', 'ORBITAL', 'SYNAPSE', 'AXIOM', 'HELIX'];
 
 const fallbackTestimonials = [
-  { quote: "BrandXMedia didn't just build us a website; they built us a growth engine. Our inbound leads tripled within the first quarter.", name: "Sarah Chen", role: "CEO, TechFlow", content: "" },
+  { quote: "ImpactX didn't just build us a website; they built us a growth engine. Our inbound leads tripled within the first quarter.", name: "Sarah Chen", role: "CEO, TechFlow", content: "" },
   { quote: "The attention to detail and strategic approach is unmatched. They understood our brand vision better than we did ourselves.", name: "Marcus Thorne", role: "Founder, Nexus.AI", content: "" },
   { quote: "Highly professional, incredibly fast, and most importantly, they deliver on their promises. A true digital partner.", name: "Elena Rodriguez", role: "CMO, Orbital Systems", content: "" },
 ];
