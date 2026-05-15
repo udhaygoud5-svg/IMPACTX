@@ -15,7 +15,7 @@ export default function BrochureNavbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl tracking-tight border-b border-on-surface/5">
       <div className="flex justify-between items-center px-8 py-5 max-w-[1440px] mx-auto w-full">
-        <a className="text-lg font-extrabold tracking-tight text-on-surface uppercase" href="/">ImpactX</a>
+        <a href="/"><img src="/logo.png" alt="ImpactX Logo" className="h-8 w-auto object-contain" /></a>
         
         <div className="hidden md:flex items-center gap-10">
           {links.map((link) => (
