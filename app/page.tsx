@@ -102,14 +102,44 @@ export default function Home() {
 
       {/* ── 1. HERO ─────────────────────────────────────────────────── */}
       <section id="home" className="pt-44 pb-28 px-6 md:px-8 flex flex-col items-center justify-center text-center relative overflow-hidden">
-        {/* Subtle dot grid */}
-        <div className="absolute inset-0 perspective-grid perspective-mask opacity-30 pointer-events-none" />
+        {/* Dot grid */}
+        <div className="absolute inset-0 perspective-grid perspective-mask opacity-20 pointer-events-none" />
+
+        {/* ── Ambient glow orbs ── */}
+        {/* Large blue center orb */}
+        <div style={{
+          position: 'absolute', top: '10%', left: '50%',
+          transform: 'translateX(-50%)',
+          width: 700, height: 500,
+          borderRadius: '50%',
+          background: 'radial-gradient(ellipse at center, rgba(26,95,255,0.18) 0%, rgba(26,95,255,0.06) 50%, transparent 75%)',
+          filter: 'blur(40px)',
+          pointerEvents: 'none',
+        }} />
+        {/* Red-orange accent — top right */}
+        <div style={{
+          position: 'absolute', top: '-5%', right: '-5%',
+          width: 400, height: 400,
+          borderRadius: '50%',
+          background: 'radial-gradient(ellipse at center, rgba(232,53,15,0.12) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+          pointerEvents: 'none',
+        }} />
+        {/* Soft blue — bottom left */}
+        <div style={{
+          position: 'absolute', bottom: '-10%', left: '-5%',
+          width: 380, height: 380,
+          borderRadius: '50%',
+          background: 'radial-gradient(ellipse at center, rgba(26,95,255,0.1) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+          pointerEvents: 'none',
+        }} />
 
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-5xl mx-auto relative z-10"
+          className="max-w-6xl mx-auto relative z-10"
         >
           {/* Badge */}
           <div className="inline-flex items-center gap-2 border border-primary/30 text-primary bg-primary/5 rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] mb-10">
@@ -118,8 +148,11 @@ export default function Home() {
           </div>
 
           <h1
-            className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.05] mb-8"
-            style={{ fontFamily: 'Syne, sans-serif' }}
+            className="font-extrabold tracking-tight leading-[1.08] mb-8"
+            style={{
+              fontFamily: 'Syne, sans-serif',
+              fontSize: 'clamp(2rem, 4vw, 4rem)',
+            }}
           >
             Build Attention. Create <span style={{ color: '#E8350F' }}>Impact.</span><br />
             Scale Beyond.
