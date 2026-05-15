@@ -101,38 +101,29 @@ export default function Home() {
       <Navbar />
 
       {/* ── 1. HERO ─────────────────────────────────────────────────── */}
-      <section id="home" className="pt-44 pb-28 px-6 md:px-8 flex flex-col items-center justify-center text-center relative overflow-hidden">
+      <section id="home" className="pt-40 pb-24 px-6 md:px-8 flex flex-col items-center justify-center text-center relative overflow-hidden" style={{ minHeight: '100vh' }}>
         {/* Dot grid */}
         <div className="absolute inset-0 perspective-grid perspective-mask opacity-20 pointer-events-none" />
 
         {/* ── Ambient glow orbs ── */}
-        {/* Large blue center orb */}
         <div style={{
           position: 'absolute', top: '10%', left: '50%',
           transform: 'translateX(-50%)',
-          width: 700, height: 500,
-          borderRadius: '50%',
+          width: 700, height: 500, borderRadius: '50%',
           background: 'radial-gradient(ellipse at center, rgba(26,95,255,0.18) 0%, rgba(26,95,255,0.06) 50%, transparent 75%)',
-          filter: 'blur(40px)',
-          pointerEvents: 'none',
+          filter: 'blur(40px)', pointerEvents: 'none',
         }} />
-        {/* Red-orange accent — top right */}
         <div style={{
           position: 'absolute', top: '-5%', right: '-5%',
-          width: 400, height: 400,
-          borderRadius: '50%',
+          width: 400, height: 400, borderRadius: '50%',
           background: 'radial-gradient(ellipse at center, rgba(232,53,15,0.12) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-          pointerEvents: 'none',
+          filter: 'blur(60px)', pointerEvents: 'none',
         }} />
-        {/* Soft blue — bottom left */}
         <div style={{
           position: 'absolute', bottom: '-10%', left: '-5%',
-          width: 380, height: 380,
-          borderRadius: '50%',
+          width: 380, height: 380, borderRadius: '50%',
           background: 'radial-gradient(ellipse at center, rgba(26,95,255,0.1) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-          pointerEvents: 'none',
+          filter: 'blur(60px)', pointerEvents: 'none',
         }} />
 
         <motion.div
@@ -142,23 +133,20 @@ export default function Home() {
           className="max-w-6xl mx-auto relative z-10"
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 border border-primary/30 text-primary bg-primary/5 rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] mb-10">
+          <div className="inline-flex items-center gap-2 border border-primary/30 text-primary bg-primary/5 rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             Creative-Tech Growth Company
           </div>
 
           <h1
-            className="font-extrabold tracking-tight leading-[1.08] mb-8"
-            style={{
-              fontFamily: 'Syne, sans-serif',
-              fontSize: 'clamp(2rem, 4vw, 4rem)',
-            }}
+            className="font-extrabold tracking-tight leading-[1.05] mb-6"
+            style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2.8rem, 6vw, 6rem)' }}
           >
             Build Attention. Create <span style={{ color: '#E8350F' }}>Impact.</span><br />
             Scale Beyond.
           </h1>
 
-          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: 'rgba(244,241,236,0.6)' }}>
+          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-6 leading-relaxed" style={{ color: 'rgba(244,241,236,0.6)' }}>
             We combine media, marketing, websites, AI automations, and growth systems to help businesses move faster, look premium, and convert better.
           </p>
 
@@ -166,7 +154,8 @@ export default function Home() {
             We turn attention into growth.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <a href="#contact" className="w-full sm:w-auto bg-primary text-white px-9 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all glow-red flex items-center gap-2 justify-center">
               Book a Strategy Call
               <ArrowRight size={15} />
@@ -174,8 +163,43 @@ export default function Home() {
             <a href="#services" className="w-full sm:w-auto border border-white/10 text-on-surface-variant hover:text-on-surface hover:border-white/20 px-9 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all">
               See What We Do
             </a>
+            <a
+              href="/ImpactX_Brochure.html" target="_blank" rel="noopener noreferrer"
+              className="w-full sm:w-auto flex items-center gap-2 justify-center px-9 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all border border-white/10 hover:border-primary/40 hover:text-on-surface"
+              style={{ color: 'rgba(244,241,236,0.5)' }}
+            >
+              <span style={{ fontSize: 13 }}>📄</span> View Brochure
+            </a>
           </div>
+
+          {/* Stats row */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-16"
+          >
+            {[
+              { value: '50+', label: 'Clients Served' },
+              { value: '200+', label: 'Projects Delivered' },
+              { value: '4×', label: 'Avg Growth Rate' },
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center gap-1">
+                <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '2.2rem', color: '#F4F1EC', letterSpacing: '-1px' }}>{stat.value}</span>
+                <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.25em', color: 'rgba(244,241,236,0.3)' }}>{stat.label}</span>
+              </div>
+            ))}
+          </motion.div>
         </motion.div>
+
+        {/* Scroll indicator */}
+        <div style={{
+          position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, zIndex: 10,
+        }}>
+          <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(244,241,236,0.2)' }}>Scroll</span>
+          <div style={{ width: 1, height: 40, background: 'linear-gradient(to bottom, rgba(232,53,15,0.6), transparent)' }} />
+        </div>
       </section>
 
       {/* ── 2. TAGLINE MARQUEE ──────────────────────────────────────── */}

@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { href: "#services", label: "Services" },
   { href: "#about",    label: "About"    },
   { href: "#packages", label: "Packages" },
+  { href: "/ImpactX_Brochure.html", label: "Brochure", isExternal: true },
 ];
 
 export default function Navbar() {
