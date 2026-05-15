@@ -18,7 +18,7 @@ export default function Navbar() {
 
         {/* ── Logo ── */}
         <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          <img src="/logo.png" alt="ImpactX Logo" style={{ height: '36px', width: 'auto', objectFit: 'contain' }} />
+          <img src="/main-logo.png" alt="ImpactX Logo" style={{ height: '36px', width: 'auto', objectFit: 'contain' }} />
         </a>
 
         {/* ── Desktop Nav ── */}
