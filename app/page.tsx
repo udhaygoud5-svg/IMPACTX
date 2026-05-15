@@ -101,61 +101,52 @@ export default function Home() {
       <Navbar />
 
       {/* ── 1. HERO ─────────────────────────────────────────────────── */}
-      <section id="home" className="pt-40 pb-24 px-6 md:px-8 flex flex-col items-center justify-center text-center relative overflow-hidden" style={{ minHeight: '100vh' }}>
-        {/* Dot grid */}
-        <div className="absolute inset-0 perspective-grid perspective-mask opacity-20 pointer-events-none" />
+      <section id="home" className="grid-bg blue-glow pt-40 pb-24 px-6 md:px-8 flex flex-col items-center justify-center text-center relative overflow-hidden" style={{ minHeight: '100vh' }}>
 
-        {/* ── Ambient glow orbs ── */}
-        <div style={{
-          position: 'absolute', top: '10%', left: '50%',
-          transform: 'translateX(-50%)',
-          width: 700, height: 500, borderRadius: '50%',
-          background: 'radial-gradient(ellipse at center, rgba(26,95,255,0.18) 0%, rgba(26,95,255,0.06) 50%, transparent 75%)',
-          filter: 'blur(40px)', pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute', top: '-5%', right: '-5%',
-          width: 400, height: 400, borderRadius: '50%',
-          background: 'radial-gradient(ellipse at center, rgba(232,53,15,0.12) 0%, transparent 70%)',
-          filter: 'blur(60px)', pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute', bottom: '-10%', left: '-5%',
-          width: 380, height: 380, borderRadius: '50%',
-          background: 'radial-gradient(ellipse at center, rgba(26,95,255,0.1) 0%, transparent 70%)',
-          filter: 'blur(60px)', pointerEvents: 'none',
-        }} />
+        {/* ── Animated Background Orbs ── */}
+        <div className="hero-orb-center"></div>
+        <div className="hero-orb-red"></div>
+        <div className="hero-orb-blue2"></div>
+        <div className="hero-orb-core"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-6xl mx-auto relative z-10"
+          className="max-w-6xl mx-auto relative z-10 w-full"
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 border border-primary/30 text-primary bg-primary/5 rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] mb-8">
+          <div className="inline-flex items-center gap-2 border border-primary/40 text-primary bg-primary/10 rounded-full px-5 py-2 text-[10px] font-bold uppercase tracking-[0.3em] mb-12 shadow-[0_0_20px_rgba(232,53,15,0.15)]">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             Creative-Tech Growth Company
           </div>
 
           <h1
-            className="font-extrabold tracking-tight leading-[1.05] mb-6"
-            style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2.8rem, 6vw, 6rem)' }}
+            className="font-extrabold tracking-tight mb-8"
+            style={{
+              fontFamily: 'Syne, sans-serif',
+              fontSize: 'clamp(2.5rem, 5.5vw, 4.5rem)',
+              lineHeight: 0.95,
+              letterSpacing: '-2px',
+              background: 'linear-gradient(175deg, #FFFFFF 40%, rgba(244,241,236,0.3) 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
           >
-            Build Attention. Create <span style={{ color: '#E8350F' }}>Impact.</span><br />
+            Build Attention.<br />
+            Create IMPACT<span style={{ WebkitTextFillColor: '#E8350F', color: '#E8350F' }}>X</span>.<br />
             Scale Beyond.
           </h1>
 
-          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-6 leading-relaxed" style={{ color: 'rgba(244,241,236,0.6)' }}>
+          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: 'rgba(244,241,236,0.6)' }}>
             We combine media, marketing, websites, AI automations, and growth systems to help businesses move faster, look premium, and convert better.
           </p>
 
-          <p className="text-sm font-bold uppercase tracking-[0.2em] mb-10" style={{ color: 'rgba(244,241,236,0.35)', fontFamily: 'Space Mono, monospace' }}>
+          <p className="text-sm font-bold uppercase tracking-[0.2em] mb-12" style={{ color: 'rgba(244,241,236,0.35)', fontFamily: 'Space Mono, monospace' }}>
             We turn attention into growth.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#contact" className="w-full sm:w-auto bg-primary text-white px-9 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-primary/90 transition-all glow-red flex items-center gap-2 justify-center">
               Book a Strategy Call
               <ArrowRight size={15} />
@@ -163,33 +154,7 @@ export default function Home() {
             <a href="#services" className="w-full sm:w-auto border border-white/10 text-on-surface-variant hover:text-on-surface hover:border-white/20 px-9 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all">
               See What We Do
             </a>
-            <a
-              href="/ImpactX_Brochure.html" target="_blank" rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center gap-2 justify-center px-9 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all border border-white/10 hover:border-primary/40 hover:text-on-surface"
-              style={{ color: 'rgba(244,241,236,0.5)' }}
-            >
-              <span style={{ fontSize: 13 }}>📄</span> View Brochure
-            </a>
           </div>
-
-          {/* Stats row */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-16"
-          >
-            {[
-              { value: '50+', label: 'Clients Served' },
-              { value: '200+', label: 'Projects Delivered' },
-              { value: '4×', label: 'Avg Growth Rate' },
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col items-center gap-1">
-                <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '2.2rem', color: '#F4F1EC', letterSpacing: '-1px' }}>{stat.value}</span>
-                <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.25em', color: 'rgba(244,241,236,0.3)' }}>{stat.label}</span>
-              </div>
-            ))}
-          </motion.div>
         </motion.div>
 
         {/* Scroll indicator */}
@@ -347,16 +312,14 @@ export default function Home() {
                   key={i}
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.25 }}
-                  className={`p-9 rounded-3xl flex flex-col relative ${
-                    isFeatured
-                      ? 'bg-[#1A1A1A] border-2 border-primary'
-                      : 'bg-[#1A1A1A] border border-white/[0.06]'
-                  }`}
+                  className={`p-9 rounded-3xl flex flex-col relative ${isFeatured
+                    ? 'bg-[#1A1A1A] border-2 border-primary'
+                    : 'bg-[#1A1A1A] border border-white/[0.06]'
+                    }`}
                 >
                   {pkg.tag && (
-                    <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${
-                      isFeatured ? 'bg-primary text-white' : 'bg-white/10 text-on-surface-variant'
-                    }`}>
+                    <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${isFeatured ? 'bg-primary text-white' : 'bg-white/10 text-on-surface-variant'
+                      }`}>
                       {pkg.tag}
                     </div>
                   )}
@@ -372,12 +335,11 @@ export default function Home() {
                   </ul>
                   <a
                     href="#contact"
-                    className={`w-full text-center py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all ${
-                      isFeatured
-                        ? 'bg-primary text-white hover:bg-primary/90'
-                        : 'bg-white/10 text-on-surface hover:bg-white/20 border border-white/10'
-                    }`}
-                  style={isFeatured ? { boxShadow: '0 0 40px -8px rgba(232,53,15,0.4)' } : {}}
+                    className={`w-full text-center py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all ${isFeatured
+                      ? 'bg-primary text-white hover:bg-primary/90'
+                      : 'bg-white/10 text-on-surface hover:bg-white/20 border border-white/10'
+                      }`}
+                    style={isFeatured ? { boxShadow: '0 0 40px -8px rgba(232,53,15,0.4)' } : {}}
                   >
                     Get Started
                   </a>
