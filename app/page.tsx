@@ -462,7 +462,7 @@ export default function Home() {
                 <span className="label-md" style={{ color: 'rgba(244,241,236,0.3)' }}>Social</span>
                 {[
                   { href: "https://www.instagram.com/impactx.co", label: "Instagram" },
-                  { href: "https://linkedin.com/company/impactx", label: "LinkedIn" },
+                  { href: "https://www.linkedin.com/company/weimpactx", label: "LinkedIn" },
                 ].map(link => (
                   <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="text-base font-bold uppercase tracking-tight hover:text-primary transition-colors" style={{ color: 'rgba(244,241,236,0.6)' }}>
                     {link.label}
