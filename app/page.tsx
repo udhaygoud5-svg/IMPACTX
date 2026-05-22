@@ -461,7 +461,7 @@ export default function Home() {
               <div className="flex flex-col gap-4">
                 <span className="label-md" style={{ color: 'rgba(244,241,236,0.3)' }}>Social</span>
                 {[
-                  { href: "https://instagram.com/impactx", label: "Instagram" },
+                  { href: "https://www.instagram.com/impactx.co", label: "Instagram" },
                   { href: "https://linkedin.com/company/impactx", label: "LinkedIn" },
                 ].map(link => (
                   <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="text-base font-bold uppercase tracking-tight hover:text-primary transition-colors" style={{ color: 'rgba(244,241,236,0.6)' }}>

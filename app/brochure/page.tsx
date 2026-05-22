@@ -403,8 +403,8 @@ export default function BrochurePage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32, maxWidth: 860, margin: "0 auto 60px" }}>
             {[
               { icon: "📞", label: "PHONE", lines: ["+91 93470 47827", "+91 93476 51574"] },
-              { icon: "✉️", label: "EMAIL", lines: ["impactx@gmail.com"] },
-              { icon: "📸", label: "INSTAGRAM", lines: ["@impactx"] },
+              { icon: "✉️", label: "EMAIL", lines: ["weareimpactx@gmail.com"] },
+              { icon: "📸", label: "INSTAGRAM", lines: ["@impactx.co"] },
               { icon: "📍", label: "LOCATION", lines: ["Vijayawada, AP"] },
             ].map((c, i) => (
               <div key={i} style={{ textAlign: "center" }}>
@@ -415,7 +415,7 @@ export default function BrochurePage() {
             ))}
           </div>
 
-          <a href="mailto:impactx@gmail.com" style={{
+          <a href="mailto:weareimpactx@gmail.com" style={{
             display: "inline-block", background: "#E8350F", color: "#fff",
             padding: "18px 56px", borderRadius: "100px",
             fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: 14,
